@@ -130,6 +130,9 @@ function struct2slbus( s, BusName, varargin )
             elems(i).Name = sfields{i};
             elems(i).Dimensions = size(s.(sfields{i}));
             elems(i).DataType = class(s.(sfields{i}));
+            if strcmp(elems(i).DataType, 'logical')
+                elems(i).DataType = 'boolean';
+            end
             elems(i).SampleTime = -1;
             elems(i).Complexity = 'real';
             elems(i).SamplingMode = 'Sample based';
