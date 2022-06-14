@@ -97,10 +97,11 @@ function struct2slbus( s, BusName, varargin )
     if( length(s) > 1 )
         s = s(1);
     end
-
+    
+    elems = repmat( Simulink.BusElement, length(sfields), 1 );
+    
     % Loop through the structure
     for i = 1:length(sfields)
-        sfieldsID = [ sfields{i}, charID ];
 
         sfields_diff = sfields{i};
 
@@ -110,6 +111,7 @@ function struct2slbus( s, BusName, varargin )
             end
         end
 
+        % fill BusElement for each field
         if isequal( class(s.(sfields{i})), 'struct' )
             % Here is struct inside a struct identified. And only existing types
             % could be addi as type in this script. So we have to create a bus
@@ -117,26 +119,22 @@ function struct2slbus( s, BusName, varargin )
             % Create new bus
             struct2slbus( s.(sfields{i}), sfields_diff, varargin{:} );
             % We have to check how this is done ... TODO
-            elems(i) = Simulink.BusElement;
-            elems(i).Name = sfields{i};
-            elems(i).Dimensions = size(s.(sfields{i}));
             elems(i).DataType = ['Bus: ', [sfields_diff, 'Bus',charID]];
-            elems(i).SampleTime = -1;
-            elems(i).Complexity = 'real';
-            elems(i).SamplingMode = 'Sample based';
         else
-            % Create BusElement for each field
+            
             elems(i) = Simulink.BusElement;
-            elems(i).Name = sfields{i};
-            elems(i).Dimensions = size(s.(sfields{i}));
-            elems(i).DataType = class(s.(sfields{i}));
+            % avoid problems with generated C/C++ code
             if strcmp(elems(i).DataType, 'logical')
                 elems(i).DataType = 'boolean';
+            else
+                elems(i).DataType = class(s.(sfields{i}));
             end
-            elems(i).SampleTime = -1;
-            elems(i).Complexity = 'real';
-            elems(i).SamplingMode = 'Sample based';
         end
+        elems(i).Name = sfields{i};
+        elems(i).Dimensions = size(s.(sfields{i}));
+        elems(i).SampleTime = -1;
+        elems(i).Complexity = 'real';
+        elems(i).SamplingMode = 'Sample based';
     end
 
     % Create main fields of Bus Object and generate Bus Object in the base
