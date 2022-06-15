@@ -8,9 +8,8 @@ function id = struct2bus( s, varargin )
 % Inputs:
 %   s           A struct which is meant to be used as a Simulink bus signal
 %   bus_name    Optional: Desired name of the corresponding bus object
-%               (chars). The chars 'Bus' will be appended to the specified
-%               bus_name. If no bus_name was specified, the bus object will
-%               be named as the struct s but with the appendix 'Bus'.
+%               (chars). If no bus_name was specified, the bus object will
+%               be named as the struct s but with the appendix '_bus'.
 % 
 % Outputs:
 %   id          The number which was appendended to the desired bus_name 
@@ -18,7 +17,7 @@ function id = struct2bus( s, varargin )
 %               already a variable of the same name. If no id was appended,
 %               the id is empty.
 %   
-% See also: struct2slbus, struct2bus_
+% See also: struct2slbus
 
 % Disclamer:
 %   SPDX-License-Identifier: GPL-2.0-only
@@ -28,7 +27,7 @@ function id = struct2bus( s, varargin )
 % *************************************************************************
 
 if isempty(varargin)
-    bus_name = inputname(1);
+    bus_name = [inputname(1),'_bus'];
 else
     bus_name = varargin{1};
 end
@@ -45,19 +44,18 @@ elems = repmat( Simulink.BusElement, length(sfields), 1 );
 % Loop through the structure
 for i = 1:length(sfields)
     
-    sfields_diff = sfields{i};
-    
     % fill BusElement for each field
     if isequal( class(s.(sfields{i})), 'struct' )
         % Here is struct inside a struct identified. And only existing types
         % could be added as type in this script. So we have to create a bus
         % for this struct and add them to this element.
         % Create new bus
-        id = struct2bus( s.(sfields{i}), sfields_diff );
+        sub_bus_name = [sfields{i},'_bus'];
+        id = struct2bus( s.(sfields{i}), sub_bus_name );
         if isempty(id)
-            final_bus_name = [sfields_diff, 'Bus'];
+            final_bus_name = sub_bus_name;
         else
-            final_bus_name = [sfields_diff, 'Bus',num2str(id)];
+            final_bus_name = [sub_bus_name,num2str(id)];
         end
         elems(i).DataType = ['Bus: ', final_bus_name];
     else
@@ -83,8 +81,7 @@ BusObject = Simulink.Bus;
 BusObject.HeaderFile = '';
 BusObject.Description = sprintf('');
 BusObject.Elements = elems;
-full_bus_name = [ bus_name, 'Bus' ];
-id = assignInBaseNoOverwrite( BusObject, full_bus_name, [] );
+id = assignInBaseNoOverwrite( BusObject, bus_name, [] );
 end
 
 function id = assignInBaseNoOverwrite( var, var_name, id )

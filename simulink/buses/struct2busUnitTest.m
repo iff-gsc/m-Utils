@@ -51,7 +51,7 @@ test_struct.g.c = sub_struct3;
 
 assignin('base','test_struct',test_struct);
 
-struct2bus(test_struct,'test_struct')
+struct2bus(test_struct)
 
 sim('struct2bus_sim_test');
 

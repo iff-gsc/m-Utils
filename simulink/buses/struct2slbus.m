@@ -20,7 +20,7 @@ function id = struct2slbus( s, varargin )
 %               already a variable of the same name. If no id was appended,
 %               the id is empty.
 %   
-% See also: struct2bus, struct2bus_
+% See also: struct2bus
 
 % Disclamer:
 %   SPDX-License-Identifier: GPL-2.0-only
@@ -30,9 +30,9 @@ function id = struct2slbus( s, varargin )
 % *************************************************************************
 
 if isempty(varargin)
-    bus_name = inputname(1);
+    bus_name = [inputname(1),'Bus'];
 else
-    bus_name = varargin{1};
+    bus_name = [varargin{1},'Bus'];
 end
 
 id = struct2bus( s, bus_name );
