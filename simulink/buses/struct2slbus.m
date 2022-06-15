@@ -68,28 +68,7 @@
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-function struct2slbus( s, BusName, varargin )
-
-    n = length(varargin);
-    start_diff = 1;
-    end_diff = 0;
-
-    if (n == 0)
-        charID = [];
-    end
-
-    for i = 1:n
-        if ( strcmp(varargin{1}, 'ID') )
-            ID = varargin{2};
-            charID = num2str(ID);
-        end
-
-        if ( strcmp(varargin{i}, 'Differentiate') )
-            start_diff = i + 1;
-            end_diff = n;
-            break;
-        end
-    end
+function id = struct2slbus( s, BusName )
 
     % Obtain the fieldnames of the structure
     sfields = fieldnames(s);
@@ -105,21 +84,20 @@ function struct2slbus( s, BusName, varargin )
 
         sfields_diff = sfields{i};
 
-        for k = start_diff:end_diff
-            if( strcmp(sfields{i}, varargin{k}) )
-                sfields_diff = [ BusName, '_', sfields{i} ];
-            end
-        end
-
         % fill BusElement for each field
         if isequal( class(s.(sfields{i})), 'struct' )
             % Here is struct inside a struct identified. And only existing types
             % could be addi as type in this script. So we have to create a bus
             % for this struct and add them to this element.
             % Create new bus
-            struct2slbus( s.(sfields{i}), sfields_diff, varargin{:} );
+            id = struct2slbus( s.(sfields{i}), sfields_diff );
             % We have to check how this is done ... TODO
-            elems(i).DataType = ['Bus: ', [sfields_diff, 'Bus',charID]];
+            if isempty(id)
+                final_bus_name = [sfields_diff, 'Bus'];
+            else
+                final_bus_name = [sfields_diff, 'Bus',num2str(id)];
+            end
+            elems(i).DataType = ['Bus: ', final_bus_name];
         else
             
             elems(i) = Simulink.BusElement;
@@ -143,5 +121,44 @@ function struct2slbus( s, BusName, varargin )
     BusObject.HeaderFile = '';
     BusObject.Description = sprintf('');
     BusObject.Elements = elems;
-    assignin('base', [ BusName, 'Bus', charID ], BusObject);
+    FullBusName = [ BusName, 'Bus' ];
+    id = assignInBaseNoOverwrite( BusObject, FullBusName, [] );
+end
+
+function id = assignInBaseNoOverwrite( var, var_name, id )
+    if evalin('base',['exist(''',var_name,''')'])
+        base_var = evalin('base',var_name);
+        if isequal( base_var, var )
+            % do nothing if the same bus exists with the same name
+            return;
+        else
+            % increment apended name number (id) and save the new id
+            [var_name,id] = incrementName( var_name );
+            id = assignInBaseNoOverwrite( var, var_name, id );
+        end
+    else
+        % assign bus to base workspace if it does not exist
+        assignin('base', var_name, var);
+    end
+    
+    function [name,id] = incrementName( name )
+        % detect current apended bus name number (id) and increment it
+        i = 0;
+        while true
+            current_char = str2double(name(end-i));
+            if isnan( current_char )
+                i = i - 1;
+                break;
+            else
+                i = i + 1;
+            end
+        end
+        id = str2double(name(end-i:end));
+        if isnan(id)
+            id = 0;
+        end
+        id = id + 1;
+        name = [name(1:end-i-1),num2str(id)];
+    end
+    
 end
