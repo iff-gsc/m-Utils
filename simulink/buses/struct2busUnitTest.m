@@ -1,4 +1,4 @@
-% struct2slbusUnitTest implements struct2bus test functions in m-Utils
+% struct2busUnitTest implements struct2bus test functions in m-Utils
 %
 %   These functions define test cases with well known results.
 %   This unit test should be run every time the file has been modified,
@@ -7,7 +7,7 @@
 %   script can be used to find unintended errors.
 %
 % Example:
-%   rt = table(runtests('struct2slbusUnitTest'))
+%   rt = table(runtests('struct2busUnitTest'))
 %
 % Literature: 
 %   [1] https://blogs.mathworks.com/loren/2013/10/15/function-is-as-functiontests/
@@ -23,7 +23,7 @@
 % *************************************************************************
 
 % Call all subfunction tests in this file
-function tests = struct2slbusUnitTest
+function tests = struct2busUnitTest
     tests = functiontests(localfunctions);
 end
 
@@ -51,8 +51,8 @@ test_struct.g.c = sub_struct3;
 
 assignin('base','test_struct',test_struct);
 
-struct2slbus(test_struct,'test_struct')
+struct2bus(test_struct,'test_struct')
 
-sim('struct2slbus_sim_test');
+sim('struct2bus_sim_test');
 
 end
