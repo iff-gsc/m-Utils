@@ -58,15 +58,10 @@ for i = 1:length(sfields)
             final_bus_name = [sub_bus_name,num2str(id)];
         end
         elems(i).DataType = ['Bus: ', final_bus_name];
+    elseif isequal( class(s.(sfields{i})), 'logical' )
+        elems(i).DataType = 'boolean';
     else
-        
-        elems(i) = Simulink.BusElement;
-        % avoid problems with generated C/C++ code
-        if strcmp(elems(i).DataType, 'logical')
-            elems(i).DataType = 'boolean';
-        else
-            elems(i).DataType = class(s.(sfields{i}));
-        end
+        elems(i).DataType = class(s.(sfields{i}));
     end
     elems(i).Name = sfields{i};
     elems(i).Dimensions = size(s.(sfields{i}));
