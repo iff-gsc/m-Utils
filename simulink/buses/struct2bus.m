@@ -27,7 +27,12 @@ function id = struct2bus( s, varargin )
 % *************************************************************************
 
 if isempty(varargin)
-    bus_name = [inputname(1),'_bus'];
+    input_name = inputname(1);
+    if isempty(input_name)
+        error(['struct2bus: If first input is a field of a struct, ', ...
+            'you have to specify the "bus_name" in the second input.']);
+    end
+    bus_name = [input_name,'_bus'];
 else
     bus_name = varargin{1};
 end
