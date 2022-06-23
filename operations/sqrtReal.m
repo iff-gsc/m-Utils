@@ -24,7 +24,6 @@ function y = sqrtReal( u ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-u(u<0) = 0;
-y = sqrt(u);
+y = sqrt(max(0,u));
 
 end

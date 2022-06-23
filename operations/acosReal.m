@@ -25,8 +25,6 @@ function y = acosReal( u ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-u(u>1) = 1;
-u(u<-1) = -1;
-y = acos(u);
+y = acos(min(1,max(-1,u)));
 
 end
