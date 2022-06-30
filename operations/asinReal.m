@@ -25,8 +25,12 @@ function y = asinReal( y ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-y(y>1)  = 1;
-y(y<-1) = -1;
-y       = asin(y);
+if numel(y)>1
+    y(y>1)  = 1;
+    y(y<-1) = -1;
+else
+    y = max(-1,min(1,y));
+end
+y = asin(y);
 
 end

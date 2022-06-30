@@ -24,7 +24,11 @@ function y = sqrtReal( y ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-y(y<0)  = 0;
-y       = sqrt(y);
+if numel(y) > 1
+    y(y<0)  = 0;
+else
+    y = max(0,y);
+end
+y = sqrt(y);
 
 end
