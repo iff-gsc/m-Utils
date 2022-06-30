@@ -1,4 +1,4 @@
-function y = asinReal( u ) %#codegen
+function y = asinReal( y ) %#codegen
 % asinReal compute the arcsin and assure a real output
 %   This function wraps asin but assures that no complex number is returned.
 %   This is important for use in Simulink to avoid errors in special cases.
@@ -6,10 +6,10 @@ function y = asinReal( u ) %#codegen
 %   If the input is greater than 1, the output will be pi/2.
 % 
 % Syntax:
-%   y = asinReal( u )
+%   y = asinReal( y )
 % 
 % Inputs:
-%   u           input of the asin function (NxM array), dimensionless
+%   y           input of the asin function (NxM array), dimensionless
 % 
 % Outputs:
 %   y           output of the asin function (NxM array), in rad
@@ -25,6 +25,8 @@ function y = asinReal( u ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-y = asin(min(1,max(-1,u)));
+y(y>1)  = 1;
+y(y<-1) = -1;
+y       = asin(y);
 
 end

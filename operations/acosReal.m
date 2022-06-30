@@ -1,4 +1,4 @@
-function y = acosReal( u ) %#codegen
+function y = acosReal( y ) %#codegen
 % acosReal compute the arccos and assure a real output
 %   This function wraps acos but assures that no complex number is returned.
 %   This is important for use in Simulink to avoid errors in special cases.
@@ -6,10 +6,10 @@ function y = acosReal( u ) %#codegen
 %   If the input is greater than 1, the output will be pi.
 % 
 % Syntax:
-%   y = acosReal( u )
+%   y = acosReal( y )
 % 
 % Inputs:
-%   u           input of the acos function (NxM array), dimensionless
+%   y           input of the acos function (NxM array), dimensionless
 % 
 % Outputs:
 %   y           output of the acos function (NxM array), in rad
@@ -25,6 +25,8 @@ function y = acosReal( u ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-y = acos(min(1,max(-1,u)));
+y(y>1)  = 1;
+y(y<-1) = -1;
+y       = acos(y);
 
 end
