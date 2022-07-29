@@ -1,14 +1,14 @@
-function y = sqrtReal( u ) %#codegen
+function y = sqrtReal( y ) %#codegen
 % sqrtReal compute the square root and avoid complex numbers
 %   This function wraps sqrt but assures that no complex number is returned.
 %   This is important for use in Simulink to avoid errors in special cases.
 %   If the input is negative, the output will be zero.
 % 
 % Syntax:
-%   y = sqrtReal( u )
+%   y = sqrtReal( y )
 % 
 % Inputs:
-%   u           input of the sqrt function (NxM array)
+%   y           input of the sqrt function (NxM array)
 % 
 % Outputs:
 %   y           output of the sqrt function (NxM array)
@@ -24,7 +24,11 @@ function y = sqrtReal( u ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-u(u<0) = 0;
-y = sqrt(u);
+if numel(y) > 1
+    y(y<0)  = 0;
+else
+    y = max(0,y);
+end
+y = sqrt(y);
 
 end
