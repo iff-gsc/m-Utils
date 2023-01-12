@@ -26,7 +26,13 @@ function C = divideFinite( A, B ) %#codegen
 %   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
 % *************************************************************************
 
-B(abs(B)<eps) = eps;
+if numel(B)>1
+    B(abs(B)<eps) = eps;
+else
+    if abs(B)<eps
+        B(:) = eps;
+    end
+end
 C = A ./ B;
 
 end
