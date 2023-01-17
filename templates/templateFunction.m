@@ -23,12 +23,12 @@ function c = templateFunction( a, b )
 % 
 % Literature: (optional)
 %   [1] Schlichting, H., & Truckenbrodt, E. (2001). Aerodynamik des
-%       Flugzeuges. Zweiter Band: Aerodynamik des Tragflügels (Teil II),
-%       des Rumpfes, der Flügel-Rumpf-Anordnung und der Leitwerke. 3.
+%       Flugzeuges. Zweiter Band: Aerodynamik des Tragflï¿½gels (Teil II),
+%       des Rumpfes, der Flï¿½gel-Rumpf-Anordnung und der Leitwerke. 3.
 %       Auflage. Springer-Verlag Berlin Heidelberg.
 
 % Disclamer:
-%   SPDX-License-Identifier: GPL-2.0-only
+%   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2019-2022 First Author
 %   Copyright (C) 2022 Second Author
