@@ -33,13 +33,13 @@ block       = find_system(gcb,'LookUnderMasks','on',...
 block_type  = get_param( block{1}, 'BlockType' );
 if is_type_2
     if strcmp(block_type,block_type_1)
-        replace_block(gcb,'FollowLinks','on','Name',block_name,...
-            ['built-in/',block_type_2],'noprompt');
+        replace_block(gcb,'SearchDepth',1,'FollowLinks','on', ...
+            'Name',block_name,['built-in/',block_type_2],'noprompt');
     end
 else
     if strcmp(block_type,block_type_2)
-        replace_block(gcb,'FollowLinks','on','Name',block_name,...
-            ['built-in/',block_type_1],'noprompt')
+        replace_block(gcb,'SearchDepth',1,'FollowLinks','on', ...
+            'Name',block_name,['built-in/',block_type_1],'noprompt')
     end
 end
 
