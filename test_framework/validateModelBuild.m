@@ -21,7 +21,7 @@ function validateModelBuild(init_script_name)
 %   open_model, clc_clear, existInBaseWorkspace
 % 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Fabian Guecker

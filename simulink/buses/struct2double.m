@@ -1,6 +1,6 @@
 function [double_,idx_add] = struct2double( struct_, identifier )
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Yannic Beyer

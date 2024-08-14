@@ -445,7 +445,7 @@ function [parents_libdata, children_libdata] = getBlockLibAnalysis(blk)
 % See also:
 %   LIBINFO 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2024 Jonas Withelm
@@ -533,7 +533,7 @@ function blk_libdata = getBlockLibinfo(blk)
 % See also:
 %   LIBINFO
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2024 Jonas Withelm

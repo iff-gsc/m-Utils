@@ -17,7 +17,7 @@ function [ superCellArray ] = cell2scellArr( cellArr ) %#codegen
 %
 % See also:  setScellArrAt,  getScellArrAt,  scellArr2cell,  scellArrT,  scellDimT
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2021 Alexander Kuzolap

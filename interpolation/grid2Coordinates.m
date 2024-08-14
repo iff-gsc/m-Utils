@@ -26,7 +26,7 @@ function coordMatrix = grid2Coordinates( varargin ) %#codegen
 %   plot3( coordMatrix(:,1), coordMatrix(:,2), map_data(:), 'o' )
 % 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Yannic Beyer

@@ -24,7 +24,7 @@ function Z = matrixMultiplyNd(X,Y) %#codegen
 %   Z(i,j,l,m,n) == sum( squeeze(X(i,j,:)) .* squeeze(Y(:,l,m,n)) ) % true
 % 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Yannic Beyer

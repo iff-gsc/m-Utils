@@ -9,7 +9,7 @@ function array_out = bus2array(bus_,max_array_size)
 % max_dimension = [1, length(double_)-length(idx)];
 % 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Yannic Beyer

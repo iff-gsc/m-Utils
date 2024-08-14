@@ -17,7 +17,7 @@ function [] = blockInitRenameInport( inport_number, inport_name )
 % See also:
 %   blockInitToggleInport, blockInitReplaceBlock
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2022 Yannic Beyer

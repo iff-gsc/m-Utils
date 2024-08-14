@@ -16,7 +16,7 @@ function c = crossFast(a,b)
 % See also:
 %   cross
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2022 Yannic Beyer

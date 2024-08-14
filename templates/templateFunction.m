@@ -27,7 +27,7 @@ function c = templateFunction( a, b )
 %       des Rumpfes, der Fluegel-Rumpf-Anordnung und der Leitwerke. 3.
 %       Auflage. Springer-Verlag Berlin Heidelberg.
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2019-2022 First Author

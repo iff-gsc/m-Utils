@@ -19,7 +19,7 @@ function id = struct2bus( s, varargin )
 %   
 % See also: struct2slbus
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 %
 %   Copyright (C) 2020-2022 Yannic Beyer

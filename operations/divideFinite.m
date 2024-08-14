@@ -19,7 +19,7 @@ function C = divideFinite( A, B ) %#codegen
 %   eps, rdivide, asinReal, sqrtReal
 % 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Yannic Beyer

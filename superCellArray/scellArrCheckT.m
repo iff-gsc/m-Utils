@@ -2,7 +2,7 @@ function dimOrder = scellArrCheckT( dim, dimOrderIn )
 % scellArrCheckT simplifies the permutation order argument in case a
 %   supercell array is transposed/permuted.
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2021 Alexander Kuzolap

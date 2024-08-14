@@ -18,7 +18,7 @@ function y = acosReal( y ) %#codegen
 %   asinReal, sqrtReal
 % 
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2020-2022 Yannic Beyer

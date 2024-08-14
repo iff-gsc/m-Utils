@@ -36,7 +36,7 @@ function [ superCellArray ] = initScellArr( dimensionMatrix ) %#codegen
 %
 % See also:  getScellArrAt,  setScellArrAt,  scellArr2cell, cell2scellArr
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2021 Alexander Kuzolap

@@ -26,7 +26,7 @@ function a_x = crossSkew( a )
 % Literature:
 %   [1] https://en.wikipedia.org/wiki/Skew-symmetric_matrix
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % *************************************************************************
 

@@ -27,7 +27,7 @@ function [ array, superCellArray ] = getScellArrAt( superCellArray, idx ) %#code
 %
 % See also:  setScellArrAt,  cell2scellArr, scellArr2cell, scellArrT
 
-% Disclamer:
+% Disclaimer:
 %   SPDX-License-Identifier: GPL-3.0-only
 % 
 %   Copyright (C) 2021 Alexander Kuzolap
