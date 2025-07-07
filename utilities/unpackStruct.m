@@ -94,6 +94,9 @@ for idx = 1:numel(fnames)
         sizes_temp   = size(s.(fname));
         values_temp  = s.(fname);
     end
+    if isempty(values_temp)
+        error('Empty variables are not allowed.');
+    end
     fieldpaths = [fieldpaths; fieldpaths_temp];
     classes    = [classes; classes_temp];
     sizes      = [sizes; sizes_temp];
