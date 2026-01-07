@@ -144,7 +144,7 @@ for blk_idx = 1:numel(subblks_h)
         comb_exclude = combination_excludes{excl_idx};
         
         matches = false(size(comb_exclude, 1), 1);
-        for cmb_idx = 1:size(comb_exclude)
+        for cmb_idx = 1:size(comb_exclude,1)
             val = get_param(subblk_h, comb_exclude{cmb_idx, 1});
             matches(cmb_idx) = strcmp(comb_exclude{cmb_idx, 2}, val);
         end
